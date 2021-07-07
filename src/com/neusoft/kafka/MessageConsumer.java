@@ -14,16 +14,16 @@ import com.neusoft.common.utils.Topic;
 
 public class MessageConsumer {
 
-	public static void main(String[] args) {
-				
-		KafkaConsumer<String, String> consumer = KafkaUtil.getConsumer();
-		Map<String,List<PartitionInfo>> map =consumer.listTopics();
-		consumer.subscribe(Arrays.asList(Topic.CPC_MATCH));
-		while (true) {
-			ConsumerRecords<String, String> records = consumer.poll(1);
-			for (ConsumerRecord<String, String> record : records)
-				System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
-		}
-	}
+    public static void main(String[] args) {
+
+        KafkaConsumer<String, String> consumer = KafkaUtil.getConsumer();
+        Map<String, List<PartitionInfo>> map = consumer.listTopics();
+        consumer.subscribe(Arrays.asList(Topic.CPC_MATCH));
+        while (true) {
+            ConsumerRecords<String, String> records = consumer.poll(1);
+            for (ConsumerRecord<String, String> record : records)
+                System.out.printf("offset = %d, key = %s, value = %s\n", record.offset(), record.key(), record.value());
+        }
+    }
 
 }
